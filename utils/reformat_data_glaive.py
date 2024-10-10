@@ -2,8 +2,8 @@
 import argparse
 import json
 import os
-import random
 import string
+import secrets
 
 
 def reformat_jsonl(input_file):  # noqa: C901
@@ -71,7 +71,7 @@ def reformat_jsonl(input_file):  # noqa: C901
                     for function_call in function_calls:
                         assert not isinstance(function_call, list)
                         tool_call_id = "".join(
-                            random.choices(string.ascii_letters + string.digits, k=9)
+                            secrets.SystemRandom().choices(string.ascii_letters + string.digits, k=9)
                         )
 
                         if "arguments" in function_call and not isinstance(function_call["arguments"], str):

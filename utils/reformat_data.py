@@ -2,8 +2,8 @@
 import argparse
 import json
 import os
-import random
 import string
+import secrets
 
 
 def reformat_jsonl(input_file):
@@ -46,8 +46,7 @@ def reformat_jsonl(input_file):
                         msg["role"] = "tool"
                         if "tool_call_id" not in msg:
                             msg["tool_call_id"] = "".join(
-                                random.choices(
-                                    string.ascii_letters + string.digits, k=9
+                                secrets.SystemRandom().choices(string.ascii_letters + string.digits, k=9
                                 )
                             )
 
